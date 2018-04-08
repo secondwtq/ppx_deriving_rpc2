@@ -1,0 +1,24 @@
+opam-version: "1.2"
+maintainer: "thomas@gazagnaire.org"
+authors: "Thomas Gazagnaire, Jon Ludlam"
+homepage: "https://github.com/mirage/ocaml-rpc"
+bug-reports: "https://github.com/mirage/ocaml-rpc/issues"
+dev-repo: "git://github.com/mirage/ocaml-rpc"
+tags: [
+  "syntax"
+  "org:mirage"
+  "org:xapi-project"
+]
+build: [
+  ["jbuilder" "subst" "-n" name] {pinned}
+  ["jbuilder" "build" "-p" name "-j" jobs]
+]
+depends: [
+  "result"
+  "ppx_deriving" {>= "4.0" & < "5.0"}
+  "ppx_tools"    {build}
+  "ppxfind"      {build}
+  "jbuilder"     {build}
+  "cppo"         {build}
+  "ounit"        {test}
+]

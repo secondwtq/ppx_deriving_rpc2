@@ -1,0 +1,2 @@
+;; This file is used by `make all-supported-ocaml-versions`
+(context ((switch 4.06.1)))

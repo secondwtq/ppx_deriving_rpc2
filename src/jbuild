@@ -1,0 +1,18 @@
+(rule
+ ((deps (ppx_deriving_rpc.cppo.ml))
+  (targets (ppx_deriving_rpc.ml))
+  (action (run ${bin:cppo} -V OCAML:${ocaml_version} ${<} -o ${@}))))
+
+(rule
+ ((deps (ppx_deriving_rpcty.cppo.ml))
+  (targets (ppx_deriving_rpcty.ml))
+  (action (run ${bin:cppo} -V OCAML:${ocaml_version} ${<} -o ${@}))))
+
+(library
+ ((name ppx_deriving_rpc2)
+  (public_name ppx_deriving_rpc2)
+  (synopsis "[@@deriving rpcty]")
+  (libraries (ppx_deriving.api))
+  (preprocess (action (run ppxfind -legacy ppx_tools.metaquot --as-pp ${<})))
+  (modules (ppx_deriving_rpc ppx_deriving_rpcty))
+  (kind ppx_deriver)))
